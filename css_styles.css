@@ -16,9 +16,6 @@ body {
     color:#333
 }
 
-p {
-    padding: 10px;
-}
 
 #wrapper {
     margin: 0 auto;
@@ -32,9 +29,9 @@ p {
 }
 #innerheader{
 	position:relative;
-background: url(images/top.png) no-repeat top center;
-height:165px;
-z-index:5;
+	background: url(images/top.png) no-repeat top center;
+	height:165px;
+	z-index:5;
 }
 #content {
 	margin-left:8px;
@@ -43,14 +40,7 @@ z-index:5;
 	top:-60px;
 	background: url(images/tiledshells.jpg);
 	width: 984px;
-	height:720px;
-}
-
-#footer {
-    height: 40px;
-    width: 1000px;
-    background: #33FF66;
-    clear: both;
+	height:649px;
 }
 
 #leftpanel{
@@ -71,7 +61,7 @@ z-index:5;
 #d1 {
 	width:20px;
 	background:url('images/leftouter.png') no-repeat top left;
-	height:720px;
+	height:649px;
 	float: left;
 }
 #d2 {
@@ -83,7 +73,7 @@ z-index:5;
 #d3 {
 	width:20px;
 	background:url('images/rightouter.png') no-repeat top right;
-	height:720px;
+	height:649px;
 	float: right;
 }
 #centercontentpanel{
@@ -107,10 +97,21 @@ z-index:5;
 	border-radius:50px;
 }
 #innernav{
-	display:table-cell; 
-	vertical-align:middle;
+	padding-left:10px;
+	display: table-cell;
+	height: 30px;
+	vertical-align: middle;
 }
+@-moz-document url-prefix() {
+    /* For some reason FF needs to be 3 pixels higher for the text to look centered */
+	#innernav{
+	        padding-left:10px;
+	        display: table-cell;
+	        height: 27px;
+	        vertical-align: middle;
+	}
 
+}
 #logo{
 	position:relative;
 	top:10px;
@@ -125,12 +126,12 @@ z-index:5;
 #innerd1 {
         width:20px;
         background:url('images/contentframeleft.png') no-repeat top left;
-        height:720px;
+        height:503px;
         float: left;
 }
 #innerd2 {
 	overflow-y:scroll;
-        height:560px;
+        height:463px;
         float: center;
 	background:#eef5f3;
 	padding:20px;
@@ -139,7 +140,12 @@ z-index:5;
 #innerd3 {
         width:20px;
         background:url('images/contentframeright.png') no-repeat top right;
-        height:720px;
+        height:503px;
         float: right;
 }
 
+.sectiontitle{
+	padding:10px 0px 5px 0px;
+	font-family: "BlackChancery", Georgia, serif;
+	font-size:26px;
+}
