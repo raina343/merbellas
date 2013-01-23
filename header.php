@@ -24,12 +24,22 @@
 <title><?php wp_title( '|', true, 'right' ); ?></title>
 <link rel="profile" href="http://gmpg.org/xfn/11" />
 <link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>" />
-<link rel="stylesheet" type="text/css" href="<?php echo get_template_directory_uri(); ?>/css_styles.css" />
+<!--[if !IE]><!-->
+<link rel="stylesheet" type="text/css" href="<?php echo get_template_directory_uri(); ?>/css_styles.php" />
+<!--<![endif]-->
+<!--[if IE 9]>
+<link rel="stylesheet" type="text/css" href="<?php echo get_template_directory_uri(); ?>/css_styles.php" />
+<!--<![endif]-->
 <?php // Loads HTML5 JavaScript file to add support for HTML5 elements in older IE versions. ?>
 <!--[if lt IE 9]>
+<link rel="stylesheet" type="text/css" href="<?php echo get_template_directory_uri(); ?>/css_styles.php?type=ie8" />
 <script src="<?php echo get_template_directory_uri(); ?>/js/html5.js" type="text/javascript"></script>
 <![endif]-->
+
 <?php wp_head(); ?>
+<!--[if IE 8]> 
+<script src="<?php echo get_template_directory_uri(); ?>/js/respond.min.js" type="text/javascript"></script> 
+<![endif]--> 
 </head>
 
 <body <?php body_class(); ?>>
@@ -46,33 +56,23 @@
                 <div id="d2">&nbsp;
                         <div id="spacer" style="height:50px;"></div>
                         <div id="navbar">
-                                <div id="innernav">Home</div>
-                        </div>
+                                <div id="innernav">
+					<?php wp_nav_menu( array( 'theme_location' => 'primary', 'menu_class' => 'nav-menu99') ); ?>
+				</div>
+	                </div>
                         <div id="spacer" style="height:20px;"></div>
+<div id="hirepanel">
+<table width="100%" cellspacing="0" cellpadding="0" border="1">
+<tr><td colspan="4"><img src="<?php echo get_template_directory_uri(); ?>/images/hireperformer.png"></td></tr>
+<tr><td><img src="<?php echo get_template_directory_uri(); ?>/images/rss.png"></td>
+<td><A HREF="http://www.facebook.com/merbellas"><img src="<?php echo get_template_directory_uri(); ?>/images/facebook.png" border="0"></a></td>
+<td><A HREF="http://www.etsy.com/shop/StrangeCupOfTea"><img src="<?php echo get_template_directory_uri(); ?>/images/etsy.png" border="0"></a></td>
+<td><A HREF="http://www.youtube.com/user/MerBellas"><img src="<?php echo get_template_directory_uri(); ?>/images/youtube.png" border="0"></a></td></tr>
+</table>
+</div>
                         <div id="centercontentpanel">
                                 <div id="innertop"></div>
                                 <div id="innerd1">&nbsp;</div>
                                 <div id="innerd3">&nbsp;</div>
                                 <div id="innerd2">
-
-
-<div id="page" class="hfeed site">
-	<header id="masthead" class="site-header" role="banner">
-		<hgroup>
-			<h1 class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></h1>
-			<h2 class="site-description"><?php bloginfo( 'description' ); ?></h2>
-		</hgroup>
-
-		<nav id="site-navigation" class="main-navigation" role="navigation">
-			<h3 class="menu-toggle"><?php _e( 'Menu', 'twentytwelve' ); ?></h3>
-			<a class="assistive-text" href="#content" title="<?php esc_attr_e( 'Skip to content', 'twentytwelve' ); ?>"><?php _e( 'Skip to content', 'twentytwelve' ); ?></a>
-			<?php wp_nav_menu( array( 'theme_location' => 'primary', 'menu_class' => 'nav-menu' ) ); ?>
-		</nav><!-- #site-navigation -->
-
-		<?php $header_image = get_header_image();
-		if ( ! empty( $header_image ) ) : ?>
-			<a href="<?php echo esc_url( home_url( '/' ) ); ?>"><img src="<?php echo esc_url( $header_image ); ?>" class="header-image" width="<?php echo get_custom_header()->width; ?>" height="<?php echo get_custom_header()->height; ?>" alt="" /></a>
-		<?php endif; ?>
-	</header><!-- #masthead -->
-
-	<div id="main" class="wrapper">
+				<div id="page2" class="hfeed2 site2">

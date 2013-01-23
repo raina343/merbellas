@@ -748,8 +748,8 @@ article.sticky .featured-post {
 .comment-content h5,
 .entry-content h6,
 .comment-content h6 {
-	margin: 24px 0;
-	margin: 1.714285714rem 0;
+/*	margin: 24px 0;(/
+/*	margin: 1.714285714rem 0;*/
 	line-height: 1.714285714;
 }
 .entry-content h1,
@@ -1478,7 +1478,7 @@ img#wpstats {
 		border-bottom: 0;
 		color: #6a6a6a;
 		line-height: 3.692307692;
-		text-transform: uppercase;
+/*		text-transform: uppercase;*/
 		white-space: nowrap;
 	}
 	.main-navigation li a:hover {
@@ -1586,7 +1586,7 @@ img#wpstats {
 /* Minimum width of 960 pixels. */
 @media screen and (min-width: 960px) {
 	body {
-		background-color: #e6e6e6;
+		background-color: #fff;
 	}
 	body .site {
 		padding: 0 40px;
