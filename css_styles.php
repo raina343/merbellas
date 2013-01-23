@@ -173,6 +173,7 @@ if ($_GET['type']=="ie8"){?>
 }
 #innerd2 {
 	overflow-y:scroll;
+	overflow-x:hidden;
         height:486px;
         float: center;
 	background:#eef5f3;
