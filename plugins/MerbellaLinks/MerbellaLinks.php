@@ -128,7 +128,7 @@ function footag_func($atts) {
 	$row = $wpdb->get_results($dbQuery);
 	$code = '';
 	foreach ( $row as $row ) {
-		$code .='<div style="text-decoration:none;width:100%;display:inline-block;padding:10px 0px 10px 0px;" id="link-id'.$row->id.'"><A style="font-weight:bold;text-decoration:none;color:black;" HREF="'.$row->link.'"><div id="link-Picture" style="float:left;padding-right:10px;width:145px;height:45px;"><img width="146" height="42" src="'.$row->banner.'"></div>';
+		$code .='<div style="text-decoration:none;width:100%;display:inline-block;padding:10px 0px 10px 0px;" id="link-id'.$row->id.'"><A style="font-weight:bold;text-decoration:none;color:black;" HREF="'.$row->link.'" target="new"><div id="link-Picture" style="float:left;padding-right:10px;width:145px;height:45px;"><img width="146" height="42" src="'.$row->banner.'"></div>';
 		$code .='<div id="text" style="display:inline-block;width:400px;line-height:21px;height:42px;">'.$row->description.'<br>'.$row->link.'</div>';
 		$code .='</a>';
 		$code .='</div>';
