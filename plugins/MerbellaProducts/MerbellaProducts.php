@@ -13,8 +13,9 @@ License: A "Slug" license name e.g. GPL2
 	add_action('wp_ajax_MerbellaProductSave','MerbellaProductSave_ajax');
 	add_action('wp_ajax_MerbellaGetProductsTable','Merbella_GetProductsTable_ajax');
 	add_action('wp_ajax_MerbellaProductDelete','Merbella_DeleteProduct_ajax');
-	add_action('wp_ajax_MerbellaShowProduct', 'Products_footag_func');
-	add_action('wp_ajax_nopriv_MerbellaShowProduct', 'Products_footag_func');
+	add_action('wp_ajax_MerbellaShowProduct', 'MerbellaProductDetails_ajax');
+	add_action('wp_ajax_nopriv_MerbellaProductsList', 'Products_footag_func');
+	add_action('wp_ajax_MerbellaProductsList', 'Products_footag_func');
 	add_shortcode('MerbellaProducts', 'Products_footag_func');
 	add_image_size( 'Product-Thumb', 50, 50, true );
 	add_filter( 'image_size_names_choose', 'custom_image_sizes_choose' );  
@@ -26,7 +27,9 @@ License: A "Slug" license name e.g. GPL2
 	}
 	//wp_register_script( 'my-plugin-script', plugins_url('/functions.js', __FILE__) );
 //	wp_enqueue_script('MerbellaHistory',  plugins_url('/history/jquery.history.js', __FILE__));
-	wp_enqueue_script('MerbellaFunctions',  plugins_url('/functions.js', __FILE__));
+	wp_enqueue_script('MerbellaFunctions',  plugins_url('/functions.js', __FILE__),array('jquery'));
+	wp_enqueue_script('MerbellaHistory',  plugins_url('/jquery.ba-hashchange.min.js', __FILE__),array('jquery'));
+
 	wp_enqueue_script('thickbox');
 	wp_enqueue_style('thickbox');
 	wp_enqueue_script('media-upload'); 
@@ -142,12 +145,12 @@ function Merbella_Products() {
 	//Adds the plugin to the admin menu
 	add_menu_page( 'Merbella Products', 'Merbella Products', 'manage_options', 'MerbellaProductsOptions', 'Merbella_Products_options', $icon_url, $position );
 }
-
-function Products_footag_func($atts) {
-//print_r($_POST);
+function MerbellaProductDetails_ajax(){
+	if (substr($_POST['id'],0,1)=="#"){
+		$_POST['id'] = substr($_POST['id'],1);
+	}
 	global $wpdb;
 	$scaleimage = plugins_url('/scaleimage.php', __FILE__);
-	if ($_POST['action']=="MerbellaShowProduct"){
 		$dbQuery = "SELECT ProductName,Price,LongDesc,MainImage,id FROM wp_merbella_products WHERE id='".$_POST['id']."'";
 		$dbQuery2 = "SELECT ImageURL,Thumbnail FROM wp_merbella_products_images WHERE Productid='".$_POST['id']."'";
 		$row = $wpdb->get_results($dbQuery);
@@ -163,8 +166,15 @@ function Products_footag_func($atts) {
 		$code2 .='<br><span style="font-size:22px;font-family:BlackChancery,Georgia,serif;padding-left:10px;">'.$row[0]->Price.'</span><br>';
 		$code2 .='<br><span style="font-size:16px">'.nl2br($row[0]->LongDesc).'</span><br>';
 		$code2 .='</div>';
-		print $code2;
-		exit;
+		return ($code2);
+
+}
+function Products_footag_func($atts) {
+//print_r($_POST);
+	global $wpdb;
+	$scaleimage = plugins_url('/scaleimage.php', __FILE__);
+	if ($_POST['action']=="MerbellaShowProduct"){
+//		exit;
 	}
 	
 	$dbQuery = "SELECT ProductName,Price,ShortDesc,MainImage,id FROM wp_merbella_products WHERE enabled='1'";
@@ -188,13 +198,17 @@ function Products_footag_func($atts) {
 		$code .='</td>';
 		$x++;
 	}
-		$code .='<script language="javascript">function showproduct(id){
-		jQuery.ajax({type:\'POST\',data:{action:\'MerbellaShowProduct\',id:id},url: "wp-admin/admin-ajax.php",success: function(value) {
-                jQuery("#content2").empty();
-                jQuery("#content2").append(value);
-                }});
-	}</script>';
-	return $code;
+//		$code .='<script language="javascript">function showproduct(id){
+//		jQuery.ajax({type:\'POST\',data:{action:\'MerbellaShowProduct\',id:id},url: "wp-admin/admin-ajax.php",success: function(value) {
+//                jQuery("#content2").empty();
+//                jQuery("#content2").append(value);
+//                }});
+//	}</script>';
+	if ($_POST['bar']=="bar"){
+		die($code);
+	}else {
+		return $code;
+	}
 exit;
 }
 
@@ -311,7 +325,9 @@ function Merbella_Products_options() {
 	}
 	</script>
 	<?
+exit;
 }
 function code_MerbellaProducts($config=array()) {
 }
 ?>
+

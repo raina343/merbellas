@@ -1,18 +1,18 @@
-jQuery(document).ready(function() {
-jQuery('#upload_image_button').click(function() {
-alert('clicked');
- formfield = jQuery('#upload_image').attr('name');
- tb_show('', 'media-upload.php?type=image&amp;TB_iframe=true');
- return false;
-});
+//jQuery(document).ready(function() {
+//	jQuery('#upload_image_button').click(function() {
+//	alert('clicked');
+// formfield = jQuery('#upload_image').attr('name');
+// tb_show('', 'media-upload.php?type=image&amp;TB_iframe=true');
+// return false;
+//});
 
-window.send_to_editor = function(html) {
- imgurl = jQuery('img',html).attr('src');
- jQuery('#upload_image').val(imgurl);
- tb_remove();
-}
-
-});
+//window.send_to_editor = function(html) {
+// imgurl = jQuery('img',html).attr('src');
+// jQuery('#upload_image').val(imgurl);
+// tb_remove();
+//}
+//
+//	});
 
 
 
@@ -33,7 +33,7 @@ function decode_base64(s) {
     return r;
     }
 function toggleimage(id,file){
-	jQuery('#'+id).attr("src", decode_base64(file));
+	$('#'+id).attr("src", decode_base64(file));
 }
 (function(window,undefined){
 
@@ -98,3 +98,34 @@ function base64_encode (data) {
 
 }
 
+function showproduct(id){
+	window.location.hash='#'+id;
+}
+jQuery(function(){
+        jQuery(window).hashchange( function(){
+                var poststr2="getdata=true&id="+location.hash+"&bar=true";
+		if (location.hash==""){
+			jQuery.ajax({type:'POST',data:{action:'MerbellaProductsList',id:location.hash,bar:'bar'},url: "wp-admin/admin-ajax.php",success: function(value) {
+				jQuery("#content2").empty();
+	                        jQuery("#content2").append(value);
+	                }});
+		}else{
+			jQuery.ajax({type:'POST',data:{action:'MerbellaShowProduct',id:location.hash,bar:'bar'},url: "wp-admin/admin-ajax.php",success: function(value) {
+				jQuery("#content2").empty();
+	                        jQuery("#content2").append(value);
+	                }});
+		}
+        })
+});
+jQuery(document).ready(function() {
+	var hash=parent.location.hash; // #main
+        hash=hash.substring(1,hash.length); // take out the #
+	//this is intended for bookmarkng
+	if (hash==""){}else {
+	        var poststr2="getdata=true&id="+hash+"&foo=true";
+		jQuery.ajax({type:'POST',data:{action:'MerbellaShowProduct',id:hash,foo:'foo'},url: "wp-admin/admin-ajax.php",success: function(value) {
+	                jQuery("#content2").empty();
+	                jQuery("#content2").append(value);
+	        }});
+	}
+});

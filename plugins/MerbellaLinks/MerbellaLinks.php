@@ -14,9 +14,12 @@ add_action('wp_ajax_MerbellaLinkSave','Merbella_SaveLink_ajax');
 add_action('wp_ajax_MerbellaGetTable','Merbella_GetTable_ajax');
 add_action('wp_ajax_MerbellaLinkDelete','Merbella_DeleteLink_ajax');
 add_shortcode('MerbellaLinks', 'footag_func');
-wp_enqueue_script('thickbox');
-wp_enqueue_style('thickbox');
-wp_enqueue_script('media-upload');  
+add_action( 'init', 'add_myjavascript' );
+function add_myjavascript(){  
+	wp_enqueue_script('thickbox');
+	wp_enqueue_style('thickbox');
+	wp_enqueue_script('media-upload');  
+}
 function Merbella_GetTable_ajax(){
 //This gets and displays the Main links table.  Called via Ajax to allow for dynamic refreshing
 	global $wpdb;
