@@ -104,7 +104,10 @@ function Merbella_Products_editLink_ajax(){
 	global $wpdb;
 	$dbQuery = "SELECT id,MainImage,ProductName,Price,ShortDesc,enabled FROM wp_merbella_products WHERE id='".$_POST['id']."'";
 	$row = $wpdb->get_row($dbQuery);
-	print '<h3> Add/Edit Site</h3>';
+	$dbQuery2 = "SELECT id,ImageURL FROM wp_merbella_products_images WHERE ProductID='".$_POST['id']."'";
+	echo $dbQuery2;
+	$row2 = $wpdb->get_results($dbQuery2);
+	print '<h3> Add/Edit Product</h3>';
 	print '<table class="form-table">';
 	print '<tbody>';
 	print '<tr valign="top">';
@@ -122,6 +125,20 @@ function Merbella_Products_editLink_ajax(){
 		print ' checked="checked" ';
 	}
 	print ' /></td></tr>';
+	print '</table>';
+	print '<h3>Product Images</h3>';
+	print '<table class="form-table">';
+//	print_r($row2);
+	$w=0;
+	foreach ($row2 as $row2){
+		if (is_int($w/8)){
+			print '<tr>';
+		}
+		print '<td><img id="upload_image2" src="'.$scaleimage.'?height=100&width=100&image='.base64_encode($row2->ImageURL).'" height="100" width="100" align="center"><br><input type="radio" name="MainProductImage" id="MainProductImage" value="'.$row2->id.'"></td>';
+		$w++;
+	}
+print '</table>';
+	print '<table class="form-table">';
 	print '<tr valign="top">';
 	print '<th scope="row"><label for="Name">Main Product Image<span> *</span>: </label></th><td>';
 	?>
@@ -166,7 +183,7 @@ function MerbellaProductDetails_ajax(){
 		$code2 .='<br><span style="font-size:22px;font-family:BlackChancery,Georgia,serif;padding-left:10px;">'.$row[0]->Price.'</span><br>';
 		$code2 .='<br><span style="font-size:16px">'.nl2br($row[0]->LongDesc).'</span><br>';
 		$code2 .='</div>';
-		return ($code2);
+		die ($code2);
 
 }
 function Products_footag_func($atts) {
@@ -213,6 +230,7 @@ exit;
 }
 
 function MerbellaProducts_func() {
+exit;
 	echo "page code";
 }
 function Merbella_Products_options() {
@@ -328,6 +346,7 @@ function Merbella_Products_options() {
 exit;
 }
 function code_MerbellaProducts($config=array()) {
+exit;
 }
 ?>
 

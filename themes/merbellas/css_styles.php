@@ -248,3 +248,26 @@ if ($_GET['type']=="ie8"){?>
 	padding-top:10px;
 	padding-bottom:20px;
 }
+.ContactFAQ{
+	border-style:solid;
+	border-width:1px;
+	border-radius:50px;
+	background:#deebe7;
+	padding:5px;
+}
+.contactcells{
+	border-style:solid;
+	border-width:1px;
+	border-radius:5px;
+	border-color:#8faea7;
+}
+#SendButton{
+	margin:0px 10px 0px 10px;
+	border-style:solid
+	border-width:1px;
+	border-radius:15px;
+	background:#76ad9e;
+	color:black;
+	font-family: "BlackChancery", Georgia, serif;
+        font-size:26px;
+}
